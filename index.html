@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooster Slot Machine</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #222;
+            font-family: Arial, sans-serif;
+        }
+
+        .machine {
+            background: #444;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px #000;
+        }
+
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .slots {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .slot {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 24px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background: #ffd000;
+        }
+
+        button:hover {
+            background: #ffdf4d;
+        }
+
+        #result {
+            height: 30px;
+            margin-top: 20px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="machine">
+    <h1>🐓 ROOSTER SLOTS 🐓</h1>
+
+    <div class="slots">
+        <div class="slot" id="slot1">🍒</div>
+        <div class="slot" id="slot2">🍋</div>
+        <div class="slot" id="slot3">🍊</div>
+    </div>
+
+    <button onclick="spin()">SPIN</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    const symbols = [
+    "🍒",
+    "🍋",
+    "🍊",
+    "🍉",
+    "⭐",
+    "🐓", "🐓", "🐓", "🐓"
+];
+
+    function spin() {
+        const slots = [
+            document.getElementById("slot1"),
+            document.getElementById("slot2"),
+            document.getElementById("slot3")
+        ];
+
+        const results = [];
+
+        for (let i = 0; i < 3; i++) {
+            const result = symbols[Math.floor(Math.random() * symbols.length)];
+            results.push(result);
+            slots[i].textContent = result;
+        }
+
+        const resultText = document.getElementById("result");
+
+        if (results[0] === "🐓" &&
+            results[1] === "🐓" &&
+            results[2] === "🐓") {
+
+            resultText.textContent = "🐓 JACKPOT!!! 🐓";
+        } else {
+            resultText.textContent = "Try again!";
+        }
+    }
+</script>
+
+</body>
+</html>
